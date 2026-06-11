@@ -1,11 +1,22 @@
 import { neon } from "@neondatabase/serverless";
 
+// Ensure env exists (important for Vercel builds)
 if (!process.env.DATABASE_URL) {
   throw new Error("DATABASE_URL environment variable is not set");
 }
 
-export const sql = neon(process.env.DATABASE_URL);
+// Create Neon SQL client
+const client = neon(process.env.DATABASE_URL);
 
+// Strongly type it as a SQL template tag function
+export const sql = client as unknown as {
+  <T = any>(
+    strings: TemplateStringsArray,
+    ...values: any[]
+  ): Promise<T[]>;
+};
+
+// Your BusinessCard type (unchanged)
 export type BusinessCard = {
   id: string;
   user_id: string;
