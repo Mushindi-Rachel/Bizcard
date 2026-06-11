@@ -10,7 +10,7 @@ export default async function CardPage({ params }: { params: { id: string } }) {
   const { userId } = auth();
   if (!userId) redirect("/sign-in");
 
-  const [card] = await sql<BusinessCard[]>`
+  const [card] = await sql`
     SELECT * FROM business_cards WHERE id = ${params.id} AND user_id = ${userId}
   `;
 
