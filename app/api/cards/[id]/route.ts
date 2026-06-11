@@ -7,7 +7,7 @@ export async function GET(_: Request, { params }: { params: { id: string } }) {
   const { userId } = auth();
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const [card] = await sql<BusinessCard[]>`
+  const [card] = await sql`
     SELECT * FROM business_cards WHERE id = ${params.id} AND user_id = ${userId}
   `;
   if (!card) return NextResponse.json({ error: "Not found" }, { status: 404 });
