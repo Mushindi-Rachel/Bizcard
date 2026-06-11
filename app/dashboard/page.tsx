@@ -11,7 +11,7 @@ export default async function DashboardPage() {
   const { userId } = auth();
   if (!userId) redirect("/sign-in");
 
-  const cards = await sql<BusinessCard>`
+  const cards = await sql`
     SELECT * FROM business_cards WHERE user_id = ${userId} ORDER BY created_at DESC
   `;
 
