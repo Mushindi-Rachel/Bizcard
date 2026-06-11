@@ -15,22 +15,51 @@ export async function GET(_: Request, { params }: { params: { id: string } }) {
   return NextResponse.json(card);
 }
 
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
   const { userId } = auth();
-  if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  if (!userId) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
 
   const body = await req.json();
-  const { fullName, jobTitle, company, phone, email, website, address, logoUrl, template } = body;
+  const {
+    fullName,
+    jobTitle,
+    company,
+    phone,
+    email,
+    website,
+    address,
+    logoUrl,
+    template,
+  } = body;
 
-  const [card] = await sql<BusinessCard[]>`
-    UPDATE business_cards
-    SET full_name = ${fullName}, job_title = ${jobTitle || null}, company = ${company || null},
-        phone = ${phone || null}, email = ${email}, website = ${website || null},
-        address = ${address || null}, logo_url = ${logoUrl || null}, template = ${template || "classic"}
-    WHERE id = ${params.id} AND user_id = ${userId}
-    RETURNING *
-  `;
-  if (!card) return NextResponse.json({ error: "Not found" }, { status: 404 });
+const result = await sql`
+  UPDATE business_cards
+  SET full_name = ${fullName},
+      job_title = ${jobTitle || null},
+      company = ${company || null},
+      phone = ${phone || null},
+      email = ${email},
+      website = ${website || null},
+      address = ${address || null},
+      logo_url = ${logoUrl || null},
+      template = ${template || "classic"}
+  WHERE id = ${params.id}
+    AND user_id = ${userId}
+  RETURNING *
+`;
+
+const card = result[0] as BusinessCard | undefined;
+
+
+  if (!card) {
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
 
   return NextResponse.json(card);
 }
