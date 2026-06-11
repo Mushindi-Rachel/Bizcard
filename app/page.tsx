@@ -54,7 +54,7 @@ export default function HomePage() {
       {/* Feature grid */}
       <section className="max-w-4xl mx-auto px-4 pb-24 grid md:grid-cols-3 gap-6">
         {[
-          { icon: "🎨", title: "5 Templates", desc: "Classic, Modern, Minimal, Bold, Elegant" },
+          { icon: "🎨", title: "10 Templates", desc: "Classic, Modern, Minimal, Bold, Elegant..." },
           { icon: "📱", title: "QR Code", desc: "Auto-generated QR with your contact info" },
           { icon: "⬇️", title: "Download PNG", desc: "Print-ready and digital formats" },
         ].map((f) => (
