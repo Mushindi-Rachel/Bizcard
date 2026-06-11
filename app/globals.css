@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+  }
+  * { box-sizing: border-box; }
+  body { @apply bg-slate-50 text-slate-900 antialiased; }
+}
+
+/* Card preview exact dimensions */
+.card-preview {
+  width: 350px;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* ─── Template: Classic ─── */
+.tpl-classic {
+  background: #1e3a5f;
+  color: white;
+  font-family: Georgia, serif;
+}
+.tpl-classic .accent { color: #c9a84c; }
+.tpl-classic .divider { background: #c9a84c; }
+
+/* ─── Template: Modern ─── */
+.tpl-modern {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+.tpl-modern .accent { color: #f0e6ff; }
+.tpl-modern .divider { background: rgba(255,255,255,0.4); }
+
+/* ─── Template: Minimal ─── */
+.tpl-minimal {
+  background: #ffffff;
+  color: #1a1a1a;
+  border: 1px solid #e5e7eb;
+  font-family: 'Inter', sans-serif;
+}
+.tpl-minimal .accent { color: #6366f1; }
+.tpl-minimal .divider { background: #e5e7eb; }
+
+/* ─── Template: Bold ─── */
+.tpl-bold {
+  background: #0f0f0f;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+}
+.tpl-bold .accent { color: #22d3ee; }
+.tpl-bold .divider { background: #22d3ee; }
+
+/* ─── Template: Elegant ─── */
+.tpl-elegant {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #f5f0e8;
+  font-family: Georgia, serif;
+}
+.tpl-elegant .accent { color: #d4af37; }
+.tpl-elegant .divider { background: #d4af37; }
