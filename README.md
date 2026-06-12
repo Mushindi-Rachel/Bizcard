@@ -42,7 +42,7 @@ Open [http://localhost:3000](http://localhost:3000)
 git init
 git add .
 git commit -m "Initial commit"
-git remote add origin https://github.com/YOUR_USER/bizcard-generator.git
+git remote add origin https://github.com/YOUR_USER/CardCraft.git
 git push -u origin main
 ```
 
